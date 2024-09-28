@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      let x = 0;
+      let y = 0;
+
+      function move(dx, dy) {
+        x += dx;
+        y += dy;
+
+        let element = document.getElementById("wasm-content");
+        element.innerText = x + y;
+      }
+
+      window.document.addEventListener("keydown", (event) => {
+        switch (event.key) {
+          case "ArrowUp":
+            return move(0, 1);
+          case "ArrowUp":
+            return move(0, 1);
+          case "ArrowLeft":
+            return move(-1, 0);
+          case "ArrowRight":
+            return move(1, 0);
+        }
+      });
+    </script>
+
+    <script type="module">
+      import { add } from "./build/release.js";
+
+      let element = document.getElementById("wasm-content");
+      element.innerText = add(1, 2);
+    </script>
+  </head>
+
+  <body>
+    <h1>WebAssembly</h1>
+
+    <div id="wasm-content"></div>
+  </body>
+</html>
