@@ -1,0 +1,15 @@
+{
+  "name": "wasm-qr",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "wasm_qr_bg.wasm",
+    "wasm_qr.js",
+    "wasm_qr.d.ts"
+  ],
+  "main": "wasm_qr.js",
+  "types": "wasm_qr.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
