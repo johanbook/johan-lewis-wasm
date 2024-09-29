@@ -14,10 +14,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@assemblyscript/loader": "^0.27.30"
+    "@assemblyscript/loader": "^0.27.30",
+    "jimp": "^1.6.0"
   },
   "devDependencies": {
-    "assemblyscript": "^0.27.30"
+    "assemblyscript": "^0.27.30",
+    "prettier": "^3.3.3"
   },
   "type": "module",
   "exports": {
