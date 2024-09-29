@@ -183,13 +183,11 @@ export function main() {
 }
 
 /**
-* @param {number} width
-* @param {number} height
-* @param {Uint8Array} data
+* @param {Uint8Array} vec
 * @returns {Uint8Array}
 */
-export function decode_qr(width, height, data) {
-    const ret = wasm.decode_qr(width, height, addHeapObject(data));
+export function decode_qr(vec) {
+    const ret = wasm.decode_qr(addHeapObject(vec));
     return takeObject(ret);
 }
 

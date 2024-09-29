@@ -4,12 +4,10 @@
 */
 export function main(): void;
 /**
-* @param {number} width
-* @param {number} height
-* @param {Uint8Array} data
+* @param {Uint8Array} vec
 * @returns {Uint8Array}
 */
-export function decode_qr(width: number, height: number, data: Uint8Array): Uint8Array;
+export function decode_qr(vec: Uint8Array): Uint8Array;
 /**
 * @param {FileReader} file_reader
 */
@@ -20,7 +18,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly main: () => void;
-  readonly decode_qr: (a: number, b: number, c: number) => number;
+  readonly decode_qr: (a: number) => number;
   readonly log_image_qr_data: (a: number) => void;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;

@@ -2,7 +2,7 @@
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
 export function main(): void;
-export function decode_qr(a: number, b: number, c: number): number;
+export function decode_qr(a: number): number;
 export function log_image_qr_data(a: number): void;
 export function __wbindgen_malloc(a: number, b: number): number;
 export function __wbindgen_realloc(a: number, b: number, c: number, d: number): number;
