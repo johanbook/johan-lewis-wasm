@@ -4,13 +4,24 @@
     <script type="module">
       import init, { decode_qr } from "./pkg/wasm_qr.js";
 
+      function blob2uint(blob) {
+        return new Response(blob).arrayBuffer().then((buffer) => {
+          let uint = [...new Uint8Array(buffer)];
+          return uint;
+        });
+      }
+
       async function doStuff() {
         const resp = await fetch("http://localhost:3000/public/qr.jpg");
-        const file = await resp.blob();
+        const blob = await resp.blob();
 
-        console.log({ file });
+        await init();
 
-        decode_qr(100, 100, file);
+        const uints = await blob2uint(blob);
+
+        const result = decode_qr(212, 204, uints);
+
+        console.log({ result });
       }
 
       doStuff();
