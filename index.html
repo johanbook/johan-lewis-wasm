@@ -1,39 +1,39 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
+    <input type="file" id="file-input" accept="image/*" />
     <script type="module">
-import { Jimp } from "jimp";
+        import init, { decode_qr } from "./wasm-qr/pkg/wasm_qr.js";
 
-      import init, { decode_qr } from "./pkg/wasm_qr.js";
+        async function doStuff() {
+            await init();
 
-      function blob2uint(blob) {
-        return new Response(blob).arrayBuffer().then((buffer) => {
-          let uint = [...new Uint8Array(buffer)];
-          return uint;
-        });
-      }
+            var fileReader = new FileReader();
+            fileReader.onloadend = e => decode_qr_from_reader(fileReader);
+            var fileInputElement = document.getElementById("file");
+            fileInputElement.addEventListener("change", e => fileReader.readAsArrayBuffer(fileInputElement.files[0]));
 
-      async function doStuff() {
-        const resp = await fetch("http://localhost:3000/public/qr.jpg");
-        const blob = await resp.blob();
+            // document.getElementById('file-input').addEventListener('change', function(event) {
+            //     const file = event.target.files[0];
+            //     if (file) {
+            //         const reader = new FileReader();
+            //         reader.onload = function(e) {
+            //             const arrayBuffer = e.target.result; // Get the ArrayBuffer
+            //             const uint8Array = new Uint8Array(arrayBuffer); // Convert to Uint8Array
+            //             console.log({ uint8Array });
+            //             const result = decode_qr(uint8Array); // Call decode_qr with the Uint8Array
+            //             console.log({ result });
+            //         };
+            //         reader.readAsArrayBuffer(file); // Read the file as ArrayBuffer
+            //     }
+            // });
+        }
 
-
-    const image = await Jimp.fromBuffer(blob);
-
-        await init();
-
-        const uints = await blob2uint(blob);
-
-        const result = decode_qr(212, 204, uints);
-
-        console.log({ result });
-      }
-
-      doStuff();
+        doStuff();
     </script>
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="wasm-content"></div>
-  </body>
+</body>
 </html>
